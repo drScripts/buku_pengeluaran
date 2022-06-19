@@ -9,7 +9,7 @@ const { jwtSecret } = require("../config");
  *
  */
 module.exports = async (req, res, next) => {
-  const token = req.headers.authorization;
+  const token = req.headers.authorization?.replace("Bearer ", "");
 
   if (!token)
     return res.status(401).json({
@@ -18,7 +18,7 @@ module.exports = async (req, res, next) => {
     });
 
   try {
-    const user = verify(token.replace("Bearer "), jwtSecret);
+    const user = verify(token, jwtSecret);
 
     if (!user)
       return res.status(401).json({
