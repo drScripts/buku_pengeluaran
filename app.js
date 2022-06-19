@@ -4,6 +4,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 
 const usersRouter = require("./routes/users");
+const businessRouter = require("./routes/busines");
 
 const app = express();
 
@@ -16,5 +17,6 @@ app.use(express.static(path.join(__dirname, "public")));
 const prefix = "/v1/api";
 
 app.use(`${prefix}/users`, usersRouter);
+app.use(`${prefix}/busines`, businessRouter);
 
 module.exports = app;
