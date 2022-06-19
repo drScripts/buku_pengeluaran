@@ -8,4 +8,6 @@ module.exports = {
   appUrl: process.env.APP_URL,
   dbName: process.env.DATABASE_NAME,
   dbDialect: process.env.DATABASE_DIALECT,
+  jwtSecret: process.env.APP_JWT_SECRET,
+  jwtExpired: process.env.APP_JWT_EXPIRED,
 };
