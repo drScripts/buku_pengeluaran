@@ -6,9 +6,9 @@ const upload = multer({ dest: os.tmpdir() });
 
 const router = require("express").Router();
 
-router.post("/register", register);
+router.post("/register", upload.single("profile"), register);
 router.post("/login", login);
-router.get("/profile", [authMiddleware, upload.single("profile")], profile);
+router.get("/profile", authMiddleware, profile);
 router.patch("/profile", [authMiddleware, upload.single("profile")], update);
 
 module.exports = router;
