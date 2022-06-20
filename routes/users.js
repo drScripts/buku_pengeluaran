@@ -8,7 +8,7 @@ const router = require("express").Router();
 
 router.post("/register", register);
 router.post("/login", login);
-router.get("/profile", authMiddleware, profile);
+router.get("/profile", [authMiddleware, upload.single("profile")], profile);
 router.patch("/profile", [authMiddleware, upload.single("profile")], update);
 
 module.exports = router;

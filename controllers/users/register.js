@@ -2,7 +2,7 @@ const { request, response } = require("express");
 const Joi = require("joi");
 const { hashSync } = require("bcrypt");
 const { User, UserProfile } = require("../../models");
-const { getJwtToken } = require("../../helpers");
+const { getJwtToken, cloudinarySendImage } = require("../../helpers");
 
 /**
  *
@@ -37,6 +37,13 @@ module.exports = async (req, res) => {
       });
 
     const { fullName, password, email, phoneNumber, profession } = req.body;
+    const file = req.file;
+
+    let profileUrl;
+
+    if (file) {
+      profileUrl = (await cloudinarySendImage(file)).secure_url;
+    }
 
     const hashedPassword = hashSync(password, 10);
 
@@ -50,6 +57,7 @@ module.exports = async (req, res) => {
       userId: userCreated.id,
       phoneNumber,
       profession,
+      profile: profileUrl,
     });
 
     const user = await User.findOne({
