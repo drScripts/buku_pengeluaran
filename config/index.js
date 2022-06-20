@@ -10,4 +10,8 @@ module.exports = {
   dbDialect: process.env.DATABASE_DIALECT,
   jwtSecret: process.env.APP_JWT_SECRET,
   jwtExpired: process.env.APP_JWT_EXPIRED,
+  cloudinaryApiKey: process.env.CLOUDINARY_API_KEY,
+  cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME,
+  cloudinaryApiSecret: process.env.CLOUDINARY_API_SECRET,
+  cloudinaryIsSecure: process.env.CLOUDINARY_IS_SECURE === "true",
 };
